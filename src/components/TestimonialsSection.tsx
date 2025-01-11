@@ -43,11 +43,11 @@ const TestimonialsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
   const previousTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   };
 
   const goToTestimonial = (index: number) => {
@@ -108,7 +108,7 @@ const TestimonialsSection = () => {
             <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{
-                transform: `translateX(${currentIndex * -100}%)`,
+                transform: `translateX(${currentIndex * 100}%)`,
                 width: `${testimonials.length * 100}%`,
               }}
             >

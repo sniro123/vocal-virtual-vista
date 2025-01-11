@@ -7,7 +7,7 @@ const testimonials = [
     age: 24,
     city: "תל אביב",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
-    text: "השיעורי פיתוח קול שינו לי את החיים! קיבלתי המון ביטחון ויכולת ווקאלית. אני מרגישה שהקול שלי השתפר פלאים ואני יכולה להופיע בביטחון מלא.",
+    text: "השיעורי פיתוח קול שינו לי את החיים! קיבלתי המון ביטחון ויכולת ווקאלית. אני מרגישה שהקול שלי השתפר פלאים.",
   },
   {
     name: "מיכאל לוי",
@@ -44,10 +44,17 @@ const TestimonialsSection = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((current) => (current + 1) % testimonials.length);
+      setCurrentIndex((prevIndex) => 
+        prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+      );
     }, 5000);
+
     return () => clearInterval(timer);
   }, []);
+
+  const handleDotClick = (index: number) => {
+    setCurrentIndex(index);
+  };
 
   return (
     <section className="py-20 bg-white">
@@ -55,35 +62,35 @@ const TestimonialsSection = () => {
         <h2 className="text-4xl font-bold text-primary text-center mb-12">
           מה התלמידים שלי אומרים
         </h2>
-        <div className="relative overflow-hidden">
-          <div
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{
-              transform: `translateX(${currentIndex * -100}%)`,
-              width: `${testimonials.length * 100}%`,
-            }}
-          >
-            {testimonials.map((testimonial, index) => (
-              <div 
-                key={index} 
-                className="w-full flex-shrink-0"
-                style={{ width: `${100 / testimonials.length}%` }}
-              >
-                <TestimonialCard {...testimonial} />
-              </div>
+        <div className="max-w-3xl mx-auto">
+          <div className="relative overflow-hidden">
+            <div 
+              className="transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(${currentIndex * 100}%)` }}
+            >
+              {testimonials.map((testimonial, index) => (
+                <div 
+                  key={index}
+                  className="absolute top-0 w-full"
+                  style={{ right: `${index * 100}%` }}
+                >
+                  <TestimonialCard {...testimonial} />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex justify-center mt-8 gap-2">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handleDotClick(index)}
+                className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+                  index === currentIndex ? 'bg-accent' : 'bg-gray-300'
+                }`}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
             ))}
           </div>
-        </div>
-        <div className="flex justify-center mt-8 space-x-2">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              className={`w-3 h-3 rounded-full transition-colors ${
-                index === currentIndex ? 'bg-accent' : 'bg-gray-300'
-              } mx-2`}
-              onClick={() => setCurrentIndex(index)}
-            />
-          ))}
         </div>
       </div>
     </section>

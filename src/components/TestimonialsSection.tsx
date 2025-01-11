@@ -59,11 +59,16 @@ const TestimonialsSection = () => {
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(-${currentIndex * 100}%)`,
+              transform: `translateX(${currentIndex * 100}%)`,
+              width: `${testimonials.length * 100}%`,
             }}
           >
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="w-full flex-shrink-0 px-4">
+              <div 
+                key={index} 
+                className="w-full flex-shrink-0"
+                style={{ width: `${100 / testimonials.length}%` }}
+              >
                 <TestimonialCard {...testimonial} />
               </div>
             ))}

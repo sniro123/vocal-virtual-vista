@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import TestimonialCard from './TestimonialCard';
 
 const testimonials = [
@@ -42,17 +42,15 @@ const testimonials = [
 const TestimonialsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
-        prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 5000);
+  const nextTestimonial = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
 
-    return () => clearInterval(timer);
-  }, []);
+  const previousTestimonial = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
 
-  const handleDotClick = (index: number) => {
+  const goToTestimonial = (index: number) => {
     setCurrentIndex(index);
   };
 
@@ -62,28 +60,75 @@ const TestimonialsSection = () => {
         <h2 className="text-4xl font-bold text-primary text-center mb-12">
           מה התלמידים שלי אומרים
         </h2>
-        <div className="max-w-3xl mx-auto">
-          <div className="relative overflow-hidden">
-            <div 
-              className="transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(${currentIndex * 100}%)` }}
+        <div className="max-w-3xl mx-auto relative">
+          {/* Navigation Buttons */}
+          <button
+            onClick={previousTestimonial}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
+            aria-label="Previous testimonial"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+          <button
+            onClick={nextTestimonial}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
+            aria-label="Next testimonial"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+
+          {/* Testimonials */}
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{
+                transform: `translateX(${currentIndex * 100}%)`,
+                width: `${testimonials.length * 100}%`,
+              }}
             >
               {testimonials.map((testimonial, index) => (
-                <div 
+                <div
                   key={index}
-                  className="absolute top-0 w-full"
-                  style={{ right: `${index * 100}%` }}
+                  className="w-full flex-shrink-0 px-4"
                 >
                   <TestimonialCard {...testimonial} />
                 </div>
               ))}
             </div>
           </div>
+
+          {/* Dots */}
           <div className="flex justify-center mt-8 gap-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => handleDotClick(index)}
+                onClick={() => goToTestimonial(index)}
                 className={`w-3 h-3 rounded-full transition-colors duration-300 ${
                   index === currentIndex ? 'bg-accent' : 'bg-gray-300'
                 }`}

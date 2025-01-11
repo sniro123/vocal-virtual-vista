@@ -3,25 +3,39 @@ import TestimonialCard from './TestimonialCard';
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
+    name: "שרה כהן",
     age: 24,
-    city: "New York",
+    city: "תל אביב",
     image: "/placeholder.svg",
-    text: "The vocal coaching has transformed my singing. I've gained so much confidence!",
+    text: "השיעורי פיתוח קול שינו לי את החיים! קיבלתי המון ביטחון ויכולת ווקאלית.",
   },
   {
-    name: "Michael Chen",
+    name: "מיכאל לוי",
     age: 19,
-    city: "Los Angeles",
+    city: "ירושלים",
     image: "/placeholder.svg",
-    text: "Best vocal coach I've ever had. The techniques really work!",
+    text: "המורה הכי טובה שהייתה לי! השיטות עובדות באמת!",
   },
   {
-    name: "Emma Wilson",
+    name: "אמה וילסון",
     age: 28,
-    city: "Chicago",
+    city: "חיפה",
     image: "/placeholder.svg",
-    text: "I've seen incredible improvement in my vocal range and control.",
+    text: "ראיתי שיפור מדהים בטווח הקולי שלי ובשליטה.",
+  },
+  {
+    name: "דניאל אברהם",
+    age: 22,
+    city: "רמת גן",
+    image: "/placeholder.svg",
+    text: "השיעורים עזרו לי להתכונן להופעות שלי בצורה מקצועית.",
+  },
+  {
+    name: "נועה ברק",
+    age: 25,
+    city: "הרצליה",
+    image: "/placeholder.svg",
+    text: "למדתי טכניקות חדשות ומרגישה הרבה יותר בטוחה בקול שלי.",
   },
 ];
 
@@ -39,7 +53,7 @@ const TestimonialsSection = () => {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-primary text-center mb-12">
-          What My Students Say
+          מה התלמידים שלי אומרים
         </h2>
         <div className="relative overflow-hidden">
           <div
@@ -61,7 +75,7 @@ const TestimonialsSection = () => {
               key={index}
               className={`w-3 h-3 rounded-full transition-colors ${
                 index === currentIndex ? 'bg-accent' : 'bg-gray-300'
-              }`}
+              } mx-2`}
               onClick={() => setCurrentIndex(index)}
             />
           ))}

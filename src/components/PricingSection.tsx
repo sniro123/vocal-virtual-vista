@@ -5,31 +5,31 @@ import PriceCard from './PriceCard';
 const PricingSection = () => {
   const prices = [
     {
-      title: "Single Lesson",
-      price: "$50",
-      description: "Perfect for trying out our lessons",
-      features: ["60-minute session", "Personalized feedback", "Vocal assessment"],
+      title: "שיעור בודד",
+      price: "₪170",
+      description: "מושלם בשביל להתנסות",
+      features: ["שיעור של 60 דקות", "משוב אישי", "הערכת קול"],
       whatsappLink: "https://wa.me/your-number",
       contactLink: "#contact",
     },
     {
-      title: "4 Lesson Package",
-      price: "$180",
-      description: "Most popular choice",
+      title: "חבילת 4 שיעורים",
+      price: "₪600",
+      description: "הבחירה המועדפת",
       features: [
-        "4x 60-minute sessions",
-        "Progress tracking",
-        "Practice materials",
-        "Email support",
+        "4 שיעורים של 60 דקות",
+        "מעקב אחר התקדמות",
+        "חומרי תרגול",
+        "תמיכה במייל",
       ],
       whatsappLink: "https://wa.me/your-number",
       contactLink: "#contact",
     },
     {
-      title: "Trial Lesson",
-      price: "Free",
-      description: "Try before you commit",
-      features: ["30-minute session", "Voice assessment", "Learning plan discussion"],
+      title: "שיעור ניסיון",
+      price: "₪75",
+      description: "נסו לפני שאתם מתחייבים",
+      features: ["שיעור של 30 דקות", "הערכת קול", "דיון על תוכנית לימודים"],
       whatsappLink: "https://wa.me/your-number",
       contactLink: "#contact",
     },
@@ -38,7 +38,9 @@ const PricingSection = () => {
   return (
     <section className="py-20 bg-warm/20">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-primary text-center mb-12">Pricing Plans</h2>
+        <h2 className="text-4xl font-bold text-primary text-center mb-12">
+          מחירון
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {prices.map((price, index) => (
             <PriceCard key={index} {...price} />
@@ -46,7 +48,7 @@ const PricingSection = () => {
         </div>
         <div className="text-center">
           <Button asChild className="bg-accent hover:bg-accent/90">
-            <Link to="/prices">View All Pricing Options</Link>
+            <Link to="/prices">צפה בכל אפשרויות התמחור</Link>
           </Button>
         </div>
       </div>

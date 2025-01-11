@@ -31,7 +31,7 @@ const Index = () => {
   return (
     <div className="min-h-screen" dir="rtl">
       <Header />
-      <main className="pt-[160px]">
+      <main className="pt-[180px]">
         <ParallaxSection {...parallaxContent[0]} />
         <AboutSection />
         <ParallaxSection {...parallaxContent[1]} />

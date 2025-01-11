@@ -16,16 +16,24 @@ const Header = () => {
   return (
     <header className="fixed w-full z-50 transition-all duration-300">
       <div className={`bg-white transition-all duration-300 ${scrolled ? 'py-2 shadow-md' : 'py-4'}`}>
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 flex flex-col items-center">
           <Link to="/" className="block w-48">
-            <img src="/logo.png" alt="Vocal Coach Logo" className="w-full h-auto" />
+            <img src="/logo.png" alt="Rose Vocal Studio Logo" className="w-full h-auto" />
           </Link>
+          <h1 className="mt-2 text-xl font-semibold text-primary">Rose Vocal Studio</h1>
         </div>
       </div>
       <nav className="bg-primary">
         <div className="container mx-auto px-4">
-          <ul className="flex justify-center space-x-8">
-            {['About', 'Prices', 'FAQ', 'Book a Lesson', 'Contact', 'Recommendations'].map((item) => (
+          <ul className="flex justify-center space-x-8 space-x-reverse">
+            {[
+              'אודות',
+              'מחירים',
+              'שאלות נפוצות',
+              'קביעת שיעור',
+              'צור קשר',
+              'המלצות'
+            ].map((item) => (
               <li key={item}>
                 <Link
                   to={`/${item.toLowerCase().replace(/\s+/g, '-')}`}

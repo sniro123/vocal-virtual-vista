@@ -31,7 +31,7 @@ const Index = () => {
   return (
     <div className="min-h-screen" dir="rtl">
       <Header />
-      <main className="pt-[180px]">
+      <main style={{ paddingTop: 'var(--header-height)' }}>
         <ParallaxSection {...parallaxContent[0]} />
         <AboutSection />
         <ParallaxSection {...parallaxContent[1]} />

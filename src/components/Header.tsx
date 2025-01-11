@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,8 +14,29 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Update CSS variable when header height changes
+  useEffect(() => {
+    const updateHeaderHeight = () => {
+      if (headerRef.current) {
+        const height = headerRef.current.offsetHeight;
+        document.documentElement.style.setProperty('--header-height', `${height}px`);
+      }
+    };
+
+    // Initial update
+    updateHeaderHeight();
+
+    // Create ResizeObserver to watch for header size changes
+    const resizeObserver = new ResizeObserver(updateHeaderHeight);
+    if (headerRef.current) {
+      resizeObserver.observe(headerRef.current);
+    }
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
   return (
-    <header className="fixed w-full z-50 transition-all duration-300">
+    <header ref={headerRef} className="fixed w-full z-50 transition-all duration-300">
       <div className={`bg-white transition-all duration-300 ${scrolled ? 'py-2 shadow-md' : 'py-4'}`}>
         <div className="container mx-auto px-4 flex flex-col items-center animate-fade-in">
           <Link to="/" className="block w-32 hover:scale-105 transition-transform duration-300">

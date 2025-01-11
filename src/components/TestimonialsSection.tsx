@@ -108,7 +108,7 @@ const TestimonialsSection = () => {
             <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{
-                transform: `translateX(${currentIndex * 100}%)`,
+                transform: `translateX(${currentIndex * -100}%)`,
                 width: `${testimonials.length * 100}%`,
               }}
             >

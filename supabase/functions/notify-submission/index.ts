@@ -13,7 +13,8 @@ serve(async (req) => {
   }
 
   try {
-    const { name, phone, message, created_at } = await req.json();
+    const { name, phone, message } = await req.json();
+    console.log('Received submission:', { name, phone, message });
 
     const client = new SMTPClient({
       connection: {
@@ -33,7 +34,7 @@ serve(async (req) => {
       Name: ${name}
       Phone: ${phone}
       Message: ${message}
-      Submitted at: ${new Date(created_at).toLocaleString()}
+      Submitted at: ${new Date().toLocaleString()}
     `;
 
     await client.send({
@@ -53,7 +54,7 @@ serve(async (req) => {
       }
     );
   } catch (error) {
-    console.error("Error sending notification:", error);
+    console.error("Error in notify-submission function:", error);
     return new Response(
       JSON.stringify({ error: error.message }),
       {

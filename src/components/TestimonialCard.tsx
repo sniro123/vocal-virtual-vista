@@ -21,7 +21,7 @@ const TestimonialCard = ({ name, age, city, image, text }: TestimonialCardProps)
           </svg>
         ))}
       </div>
-      <p className="text-secondary mb-6 text-lg">{text}</p>
+      <p className="text-secondary mb-6 text-lg leading-relaxed">{text}</p>
       <div className="flex items-center">
         <img
           src={image}
@@ -31,7 +31,7 @@ const TestimonialCard = ({ name, age, city, image, text }: TestimonialCardProps)
         <div>
           <h4 className="font-semibold text-primary text-lg">{name}</h4>
           <p className="text-sm text-secondary">
-            {age} שנים, {city}
+            בן {age}, {city}
           </p>
         </div>
       </div>

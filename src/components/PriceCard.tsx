@@ -6,7 +6,6 @@ interface PriceCardProps {
   description: string;
   features: string[];
   whatsappLink?: string;
-  contactLink?: string;
   footnote?: string;
 }
 
@@ -16,7 +15,6 @@ const PriceCard = ({
   description,
   features,
   whatsappLink,
-  contactLink,
   footnote,
 }: PriceCardProps) => {
   return (
@@ -49,25 +47,14 @@ const PriceCard = ({
           {footnote}
         </p>
       )}
-      <div className="space-y-3">
-        {whatsappLink && (
-          <Button
-            className="w-full bg-[#25D366] hover:bg-[#25D366]/90"
-            onClick={() => window.open(whatsappLink, '_blank')}
-          >
-            קביעת שיעור
-          </Button>
-        )}
-        {contactLink && (
-          <Button
-            variant="outline"
-            className="w-full border-accent text-accent hover:bg-accent hover:text-white"
-            onClick={() => window.open(contactLink, '_blank')}
-          >
-            לרכישת חבילה
-          </Button>
-        )}
-      </div>
+      {whatsappLink && (
+        <Button
+          className="w-full bg-[#25D366] hover:bg-[#25D366]/90"
+          onClick={() => window.open(whatsappLink, '_blank')}
+        >
+          קביעת שיעור
+        </Button>
+      )}
     </div>
   );
 };

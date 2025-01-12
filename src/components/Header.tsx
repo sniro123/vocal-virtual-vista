@@ -14,7 +14,6 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Update CSS variable when header height changes
   useEffect(() => {
     const updateHeaderHeight = () => {
       if (headerRef.current) {
@@ -23,10 +22,7 @@ const Header = () => {
       }
     };
 
-    // Initial update
     updateHeaderHeight();
-
-    // Create ResizeObserver to watch for header size changes
     const resizeObserver = new ResizeObserver(updateHeaderHeight);
     if (headerRef.current) {
       resizeObserver.observe(headerRef.current);
@@ -42,7 +38,7 @@ const Header = () => {
           <Link to="/" className="block w-32 hover:scale-105 transition-transform duration-300">
             <img src="/lovable-uploads/96b90545-c7fd-4bea-beaa-a3ffc3bfdfe1.png" alt="Rose Vocal Studio Logo" className="w-full h-auto" />
           </Link>
-          <h1 className="mt-2 text-xl font-semibold text-primary animate-slide-in">Rose Vocal Studio</h1>
+          <h1 className="mt-2 text-xl font-semibold text-primary animate-slide-in font-serif italic">Rose Vocal Studio</h1>
         </div>
       </div>
       <nav className="bg-primary">
@@ -59,7 +55,7 @@ const Header = () => {
               <li key={item} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
                 <Link
                   to={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="text-white py-4 block hover:text-accent transition-colors hover:scale-105 transform duration-300"
+                  className="text-white py-4 block hover:text-accent transition-colors hover:scale-105 transform duration-300 font-bold"
                 >
                   {item}
                 </Link>

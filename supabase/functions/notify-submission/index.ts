@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { SmtpClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -25,9 +26,21 @@ serve(async (req) => {
       throw new Error('Missing SMTP credentials');
     }
 
-    console.log('Preparing to send email with credentials:', {
+    console.log('Preparing email with credentials:', {
       username,
       hasPassword: !!password,
+    });
+
+    const client = new SmtpClient({
+      connection: {
+        hostname: "smtp.gmail.com",
+        port: 465,
+        tls: true,
+        auth: {
+          username,
+          password,
+        },
+      },
     });
 
     const emailContent = `
@@ -40,30 +53,16 @@ Message: ${message}
 Submitted at: ${new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' })}
     `.trim();
 
-    const emailData = {
+    console.log('Sending email...');
+
+    await client.send({
       from: username,
       to: username,
       subject: "התקבלה פנייה חדשה - סטודיו לפיתוח קול",
-      text: emailContent,
-    };
-
-    console.log('Sending email...');
-
-    const response = await fetch('https://smtp.gmail.com/smtp/v1/send', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Basic ' + btoa(`${username}:${password}`),
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(emailData),
+      content: emailContent,
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('SMTP Error:', errorText);
-      throw new Error(`SMTP Error: ${errorText}`);
-    }
-
+    await client.close();
     console.log('Email sent successfully');
 
     return new Response(

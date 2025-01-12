@@ -21,7 +21,9 @@ const TestimonialCard = ({ name, age, city, image, text }: TestimonialCardProps)
           </svg>
         ))}
       </div>
-      <p className="text-secondary mb-6 text-lg leading-relaxed flex-grow overflow-y-auto max-h-[300px] whitespace-pre-wrap">{text}</p>
+      <div className="flex-grow overflow-y-auto mb-6">
+        <p className="text-secondary text-lg leading-relaxed break-words">{text}</p>
+      </div>
       <div className="flex items-center mt-auto">
         <img
           src={image}

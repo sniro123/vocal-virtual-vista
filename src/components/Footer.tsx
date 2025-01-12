@@ -82,14 +82,14 @@ const Footer = () => {
               name="name"
               placeholder="השם שלך"
               required
-              className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+              className="bg-white/10 border-white/20 text-white placeholder:text-white/50 text-right"
             />
             <Input
               name="phone"
               type="tel"
               placeholder="מספר הטלפון שלך"
               required
-              className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+              className="bg-white/10 border-white/20 text-white placeholder:text-white/50 text-right"
             />
             <Textarea
               name="message"

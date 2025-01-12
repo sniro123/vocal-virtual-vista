@@ -1,25 +1,29 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-
-const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+import { SmtpClient } from "https://deno.land/x/smtp@v0.13.0/mod.ts";
 
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
 serve(async (req) => {
   // Handle CORS preflight requests
-  if (req.method === "OPTIONS") {
+  if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
     const { name, phone, message } = await req.json();
-    console.log("Received submission:", { name, phone, message });
+    console.log('Received submission:', { name, phone, message });
 
-    if (!RESEND_API_KEY) {
-      throw new Error("RESEND_API_KEY is not set");
-    }
+    const client = new SmtpClient();
+
+    await client.connectTLS({
+      hostname: "smtp.gmail.com",
+      port: 465,
+      username: Deno.env.get("GMAIL_USER")!,
+      password: Deno.env.get("GMAIL_APP_PASSWORD")!,
+    });
 
     const emailContent = `
       New Contact Form Submission:
@@ -30,33 +34,22 @@ serve(async (req) => {
       Submitted at: ${new Date().toLocaleString()}
     `;
 
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: "Snir Guitar <onboarding@resend.dev>",
-        to: ["Snir.roz1@gmail.com"],
-        subject: "New Contact Form Submission",
-        html: emailContent.replace(/\n/g, "<br>"),
-      }),
+    await client.send({
+      from: Deno.env.get("GMAIL_USER")!,
+      to: Deno.env.get("GMAIL_USER")!,
+      subject: "New Contact Form Submission",
+      content: emailContent,
     });
 
-    if (!res.ok) {
-      const error = await res.text();
-      console.error("Resend API error:", error);
-      throw new Error(`Failed to send email: ${error}`);
-    }
+    await client.close();
 
-    const data = await res.json();
-    console.log("Email sent successfully:", data);
-
-    return new Response(JSON.stringify({ message: "Notification sent successfully" }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-      status: 200,
-    });
+    return new Response(
+      JSON.stringify({ message: "Notification sent successfully" }),
+      {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 200,
+      }
+    );
   } catch (error) {
     console.error("Error in notify-submission function:", error);
     return new Response(

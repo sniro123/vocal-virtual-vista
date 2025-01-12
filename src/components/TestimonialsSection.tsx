@@ -49,7 +49,7 @@ const TestimonialsSection = () => {
         <p className="text-center text-secondary mb-12">
           כל העניין הוא להתאים את השיעור לתלמיד/ה, בואו תשמעו מה יש להם להגיד :)
         </p>
-        <div className="max-w-3xl mx-auto relative">
+        <div className="max-w-3xl mx-auto relative px-16">
           <button
             onClick={previousTestimonial}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
@@ -71,7 +71,7 @@ const TestimonialsSection = () => {
             </svg>
           </button>
 
-          <div className="overflow-hidden px-12">
+          <div className="overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{

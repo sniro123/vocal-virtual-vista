@@ -29,11 +29,15 @@ const TestimonialsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
   const previousTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const goToTestimonial = (index: number) => {
+    setCurrentIndex(index);
   };
 
   return (
@@ -45,10 +49,10 @@ const TestimonialsSection = () => {
         <p className="text-center text-secondary mb-12">
           כל העניין הוא להתאים את השיעור לתלמיד/ה, בואו תשמעו מה יש להם להגיד :)
         </p>
-        <div className="relative max-w-[1000px] mx-auto">
+        <div className="max-w-3xl mx-auto relative">
           <button
             onClick={previousTestimonial}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
             aria-label="Previous testimonial"
           >
             <svg
@@ -67,7 +71,7 @@ const TestimonialsSection = () => {
             </svg>
           </button>
 
-          <div className="overflow-hidden">
+          <div className="overflow-hidden px-12">
             <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{
@@ -78,7 +82,7 @@ const TestimonialsSection = () => {
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="w-full px-4"
+                  className="w-full flex-shrink-0"
                 >
                   <TestimonialCard {...testimonial} />
                 </div>
@@ -88,7 +92,7 @@ const TestimonialsSection = () => {
 
           <button
             onClick={nextTestimonial}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
             aria-label="Next testimonial"
           >
             <svg
@@ -111,7 +115,7 @@ const TestimonialsSection = () => {
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentIndex(index)}
+                onClick={() => goToTestimonial(index)}
                 className={`w-3 h-3 rounded-full transition-colors duration-300 ${
                   index === currentIndex ? 'bg-accent' : 'bg-gray-300'
                 }`}

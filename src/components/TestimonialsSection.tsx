@@ -91,7 +91,7 @@ const TestimonialsSection = () => {
             </svg>
           </button>
 
-          <div className="overflow-hidden">
+          <div className="overflow-hidden px-12">
             <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{
@@ -102,7 +102,7 @@ const TestimonialsSection = () => {
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="w-full flex-shrink-0 px-4"
+                  className="w-full flex-shrink-0"
                 >
                   <TestimonialCard {...testimonial} />
                 </div>

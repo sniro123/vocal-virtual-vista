@@ -73,7 +73,7 @@ const TestimonialsSection = () => {
             </button>
           </div>
 
-          <div className="overflow-hidden px-16">
+          <div className="overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{

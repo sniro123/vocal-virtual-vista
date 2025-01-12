@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { SmtpClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
+
+const BREVO_API_KEY = Deno.env.get("BREVO_API_KEY");
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -7,6 +8,7 @@ const corsHeaders = {
 };
 
 serve(async (req) => {
+  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
@@ -19,51 +21,47 @@ serve(async (req) => {
       throw new Error('Missing required fields');
     }
 
-    const username = Deno.env.get("GMAIL_USER");
-    const password = Deno.env.get("GMAIL_APP_PASSWORD");
-
-    if (!username || !password) {
-      throw new Error('Missing SMTP credentials');
-    }
-
-    console.log('Preparing email with credentials:', {
-      username,
-      hasPassword: !!password,
-    });
-
-    const client = new SmtpClient({
-      connection: {
-        hostname: "smtp.gmail.com",
-        port: 465,
-        tls: true,
-        auth: {
-          username,
-          password,
-        },
-      },
-    });
+    console.log('Preparing to send email via Brevo:', { name, phone });
 
     const emailContent = `
-New Contact Form Submission:
+פנייה חדשה התקבלה:
 
-Name: ${name}
-Phone: ${phone}
-Message: ${message}
+שם: ${name}
+טלפון: ${phone}
+הודעה: ${message}
 
-Submitted at: ${new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' })}
+נשלח בתאריך: ${new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' })}
     `.trim();
 
-    console.log('Sending email...');
-
-    await client.send({
-      from: username,
-      to: username,
-      subject: "התקבלה פנייה חדשה - סטודיו לפיתוח קול",
-      content: emailContent,
+    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'api-key': BREVO_API_KEY!,
+      },
+      body: JSON.stringify({
+        sender: {
+          name: "Rose Vocal Studio",
+          email: "Snir.roz1@gmail.com"
+        },
+        to: [{
+          email: "Snir.roz1@gmail.com",
+          name: "Rose Vocal Studio"
+        }],
+        subject: "פנייה חדשה - סטודיו לפיתוח קול",
+        htmlContent: emailContent.replace(/\n/g, '<br>')
+      })
     });
 
-    await client.close();
-    console.log('Email sent successfully');
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error('Brevo API error:', errorData);
+      throw new Error(`Brevo API error: ${errorData}`);
+    }
+
+    const data = await response.json();
+    console.log('Email sent successfully:', data);
 
     return new Response(
       JSON.stringify({ message: "Email notification sent successfully" }),

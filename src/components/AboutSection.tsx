@@ -3,18 +3,19 @@ import { Link } from 'react-router-dom';
 
 const AboutSection = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white" aria-label="אודות הסטודיו">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="w-full md:w-1/2 animate-fade-in">
             <img
               src="/lovable-uploads/ac85240f-a851-4587-92d3-615681b56c01.png"
-              alt="מורה לפיתוח קול"
+              alt="שניר - מורה לפיתוח קול בסטודיו רוז"
               className="rounded-lg shadow-xl w-full h-[500px] object-cover hover:scale-105 transition-transform duration-500"
+              loading="lazy"
             />
           </div>
-          <div className="w-full md:w-1/2 space-y-6 animate-slide-in">
-            <h2 className="text-4xl font-bold text-primary">פיתוח קול בדרך חדשה</h2>
+          <article className="w-full md:w-1/2 space-y-6 animate-slide-in">
+            <h1 className="text-4xl font-bold text-primary">פיתוח קול בדרך חדשה</h1>
             <p className="text-secondary text-lg leading-relaxed">
               שלום! קוראים לי שניר ואני מורה לפיתוח קול.
               <br /><br />
@@ -23,7 +24,7 @@ const AboutSection = () => {
             <Button asChild className="bg-accent hover:bg-accent/90 transform hover:scale-105 transition-all duration-300">
               <Link to="/about">למידע נוסף</Link>
             </Button>
-          </div>
+          </article>
         </div>
       </div>
     </section>

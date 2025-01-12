@@ -1,1 +1,2 @@
-project_id = "eyeqwkqwiltrufgkvgdk"
+[functions.notify-submission]
+verify_jwt = false

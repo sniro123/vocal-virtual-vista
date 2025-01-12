@@ -18,12 +18,8 @@ const AboutSection = () => {
             <h1 className="text-4xl font-bold text-primary">פיתוח קול בדרך חדשה</h1>
             <p className="text-secondary text-lg leading-relaxed">
               שלום! קוראים לי שניר ואני מורה לפיתוח קול.
-              <br /><br />
               במהלך שנות לימודי במכללת רימון נתקלתי בהמון זמרים שפנו אליי ואמרו שהם מרגישים תקועים מבחינה ווקאלית, ושהם לא רואים התקדמות משמעותית בפיתוח קול שהם נמצאים בו כרגע, זה מאוד הפתיע אותי כי בשיעורים שלי אני חווה שיפור ניכר בקול שלי כל שיעור, לקחתי על עצמי משימה להבין ולחקור לעומק את השיטה בה אני לומד ומלמד, ואיך היא שונה משאר השיטות.
             </p>
-            <Button asChild className="bg-accent hover:bg-accent/90 transform hover:scale-105 transition-all duration-300">
-              <Link to="/about">למידע נוסף</Link>
-            </Button>
           </article>
         </div>
       </div>

@@ -18,12 +18,15 @@ serve(async (req) => {
 
     const client = new SmtpClient();
 
-    await client.connectTLS({
+    const connectConfig = {
       hostname: "smtp.gmail.com",
       port: 465,
-      username: Deno.env.get("GMAIL_USER")!,
-      password: Deno.env.get("GMAIL_APP_PASSWORD")!,
-    });
+      username: Deno.env.get("GMAIL_USER"),
+      password: Deno.env.get("GMAIL_APP_PASSWORD"),
+    };
+
+    console.log('Attempting to connect to SMTP server...');
+    await client.connectTLS(connectConfig);
 
     const emailContent = `
       New Contact Form Submission:
@@ -34,6 +37,7 @@ serve(async (req) => {
       Submitted at: ${new Date().toLocaleString()}
     `;
 
+    console.log('Sending email...');
     await client.send({
       from: Deno.env.get("GMAIL_USER")!,
       to: Deno.env.get("GMAIL_USER")!,
@@ -42,6 +46,7 @@ serve(async (req) => {
     });
 
     await client.close();
+    console.log('Email sent successfully');
 
     return new Response(
       JSON.stringify({ message: "Notification sent successfully" }),

@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import PriceCard from './PriceCard';
 
+const WHATSAPP_LINK = "https://wa.me/972505072867?text=%D7%A9%D7%9C%D7%95%D7%9D!%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8,%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%90%D7%99%D7%AA%D7%9A%20%D7%A9%D7%99%D7%A2%D7%95%D7%A8%20%D7%A0%D7%99%D7%A1%D7%99%D7%95%D7%9F%20:)%20";
+
 const PricingSection = () => {
   const prices = [
     {
@@ -13,8 +15,7 @@ const PricingSection = () => {
         "צבירת ביטחון בשירה",
         "עבודה על המסורת שלכם",
       ],
-      whatsappLink: "https://wa.me/your-number",
-      contactLink: "#contact",
+      whatsappLink: WHATSAPP_LINK,
     },
     {
       title: "חבילת 4 שיעורים (מומלץ)",
@@ -28,8 +29,7 @@ const PricingSection = () => {
         "עבודה על המסורת שלכם",
       ],
       footnote: "*המחיר לשיעור אחד, בתשלום מראש 4 שיעורים בסך ₪600",
-      whatsappLink: "https://wa.me/your-number",
-      contactLink: "#contact",
+      whatsappLink: WHATSAPP_LINK,
     },
     {
       title: "שיעור ניסיון ראשון",
@@ -40,8 +40,7 @@ const PricingSection = () => {
         "היכרות אתי ועם הסטודיו הביתי שלי",
         "שיעור ללא התחייבות!",
       ],
-      whatsappLink: "https://wa.me/your-number",
-      contactLink: "#contact",
+      whatsappLink: WHATSAPP_LINK,
     },
   ];
 

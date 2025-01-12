@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { SmtpClient } from "https://deno.land/x/smtp@v0.7.0/mod.ts";
+import { SmtpClient } from "https://deno.land/x/smtp@v0.13.0/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -17,16 +17,15 @@ serve(async (req) => {
     console.log('Received submission:', { name, phone, message });
 
     const client = new SmtpClient();
-
-    const connectConfig = {
+    
+    console.log('Connecting to SMTP server...');
+    await client.connect({
       hostname: "smtp.gmail.com",
       port: 465,
       username: Deno.env.get("GMAIL_USER"),
       password: Deno.env.get("GMAIL_APP_PASSWORD"),
-    };
-
-    console.log('Attempting to connect to SMTP server...');
-    await client.connectTLS(connectConfig);
+      tls: true,
+    });
 
     const emailContent = `
       New Contact Form Submission:

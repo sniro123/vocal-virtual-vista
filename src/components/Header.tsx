@@ -38,7 +38,7 @@ const Header = () => {
           <Link to="/" className="block w-32 hover:scale-105 transition-transform duration-300">
             <img src="/lovable-uploads/96b90545-c7fd-4bea-beaa-a3ffc3bfdfe1.png" alt="Rose Vocal Studio Logo" className="w-full h-auto" />
           </Link>
-          <h1 className="mt-2 text-xl font-semibold text-primary animate-slide-in font-serif italic">Rose Vocal Studio</h1>
+          <h1 className="mt-2 text-xl text-primary animate-slide-in font-serif">Rose Vocal Studio</h1>
         </div>
       </div>
       <nav className="bg-primary">

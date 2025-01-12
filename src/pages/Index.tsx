@@ -7,20 +7,20 @@ import Footer from "@/components/Footer";
 
 const parallaxContent = [
   {
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+    image: "/lovable-uploads/0b952dc5-3a99-4f97-b963-35120ac7fb65.png",
     text: "גלה את הקול הייחודי שלך",
     buttonText: "התחל את המסע",
     buttonType: "contact" as const,
   },
   {
-    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b",
+    image: "/lovable-uploads/46f72555-9c77-44bb-a8e9-cc8098b6acc8.png",
     text: "הפוך את החלום למציאות",
     buttonText: "צור קשר בוואטסאפ",
     buttonType: "whatsapp" as const,
     whatsappLink: "https://wa.me/your-number",
   },
   {
-    image: "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843",
+    image: "/lovable-uploads/21ea5fd3-13cd-42b5-be64-662729293ea9.png",
     text: "שחרר את הפוטנציאל הקולי שלך",
     buttonText: "קבע שיעור ניסיון",
     buttonType: "contact" as const,

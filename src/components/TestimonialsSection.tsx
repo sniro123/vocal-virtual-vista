@@ -50,7 +50,6 @@ const TestimonialsSection = () => {
           כל העניין הוא להתאים את השיעור לתלמיד/ה, בואו תשמעו מה יש להם להגיד :)
         </p>
         <div className="max-w-3xl mx-auto relative">
-          {/* Navigation Buttons */}
           <button
             onClick={previousTestimonial}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
@@ -92,7 +91,6 @@ const TestimonialsSection = () => {
             </svg>
           </button>
 
-          {/* Testimonials */}
           <div className="overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-in-out"
@@ -112,7 +110,6 @@ const TestimonialsSection = () => {
             </div>
           </div>
 
-          {/* Dots */}
           <div className="flex justify-center mt-8 gap-2">
             {testimonials.map((_, index) => (
               <button

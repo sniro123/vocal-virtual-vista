@@ -5,7 +5,7 @@ const PricingSection = () => {
   const prices = [
     {
       title: "שיעור בודד",
-      price: "₪150",
+      price: "₪170",
       description: "שיעור פרטי, אחד על אחד, שמותאם אליכם ב100%",
       features: [
         "היכרות עם צבעים חדשים בקול",
@@ -18,7 +18,7 @@ const PricingSection = () => {
     },
     {
       title: "חבילת 4 שיעורים (מומלץ)",
-      price: "₪130*",
+      price: "₪150*",
       description: "החבילה הכי משתלמת לתלמידים קבועים!",
       features: [
         "הנחה של ₪20 לשיעור",
@@ -27,13 +27,13 @@ const PricingSection = () => {
         "צבירת ביטחון בשירה",
         "עבודה על המסורת שלכם",
       ],
-      footnote: "*המחיר לשיעור אחד, בתשלום מראש 4 שיעורים בסך ₪520",
+      footnote: "*המחיר לשיעור אחד, בתשלום מראש 4 שיעורים בסך ₪600",
       whatsappLink: "https://wa.me/your-number",
       contactLink: "#contact",
     },
     {
       title: "שיעור ניסיון ראשון",
-      price: "חינם",
+      price: "₪75",
       description: "בואו לבדוק האם אני המורה עבורכם!",
       features: [
         "בדיקת המנעד הקולי שלכם",

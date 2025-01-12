@@ -20,16 +20,18 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold">בואו נתחבר</h3>
+            <h3 className="text-2xl font-bold">צרו קשר</h3>
             <p className="text-lg leading-relaxed">
-              בין אם יש לכם שאלות לגבי אימון קולי, ברצונכם לקבוע שיעור,
-              או פשוט לשוחח על מוזיקה, אני כאן כדי לעזור! אתם מוזמנים ליצור
-              קשר דרך כל אחד מהערוצים הבאים.
+              אני זמין לכל שאלה או בקשה שיש לכם.
+              <br />
+              אם אתם רוצים לקבוע שיעור, מלאו את הפרטים ואחזור אליכם בהקדם!
+              <br />
+              מוזמנים גם לשלוח מייל או הודעת וואטסאפ.
             </p>
             <div className="space-y-2">
-              <p>אימייל: your.email@example.com</p>
-              <p>טלפון: 123-456-7890</p>
-              <p>כתובת: רחוב המוזיקה 123, עיר המנגינה</p>
+              <p>כתובת: נטעים 67, הוד השרון</p>
+              <p>אימייל: Snir.roz1@gmail.com</p>
+              <p>טלפון: 050-507-2867</p>
             </div>
           </div>
           <form onSubmit={handleSubmit} className="space-y-4" id="contact-form">
@@ -39,8 +41,8 @@ const Footer = () => {
               className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
             />
             <Input
-              type="email"
-              placeholder="האימייל שלך"
+              type="tel"
+              placeholder="מספר הטלפון שלך"
               required
               className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
             />

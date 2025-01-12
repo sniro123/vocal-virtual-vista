@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { SmtpClient } from "https://deno.land/x/smtp@v0.13.0/mod.ts";
+import { SmtpClient } from "https://deno.land/x/smtp@v0.11.1/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -18,7 +18,13 @@ serve(async (req) => {
 
     const client = new SmtpClient();
     
-    console.log('Connecting to SMTP server...');
+    console.log('Connecting to SMTP server with config:', {
+      hostname: "smtp.gmail.com",
+      port: 465,
+      username: Deno.env.get("GMAIL_USER"),
+      // Not logging password for security
+    });
+
     await client.connect({
       hostname: "smtp.gmail.com",
       port: 465,
@@ -26,6 +32,8 @@ serve(async (req) => {
       password: Deno.env.get("GMAIL_APP_PASSWORD"),
       tls: true,
     });
+
+    console.log('Connected to SMTP server successfully');
 
     const emailContent = `
       New Contact Form Submission:

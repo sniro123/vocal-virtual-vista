@@ -49,7 +49,7 @@ const TestimonialsSection = () => {
         <p className="text-center text-secondary mb-12">
           כל העניין הוא להתאים את השיעור לתלמיד/ה, בואו תשמעו מה יש להם להגיד :)
         </p>
-        <div className="max-w-3xl mx-auto relative px-16">
+        <div className="max-w-4xl mx-auto relative px-20">
           <button
             onClick={previousTestimonial}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"

@@ -126,11 +126,6 @@ const TestimonialsSection = () => {
             ))}
           </div>
         </div>
-        <div className="text-center mt-8">
-          <button className="text-accent hover:underline">
-            לחצו כדי לקרוא עוד המלצות
-          </button>
-        </div>
       </div>
     </section>
   );

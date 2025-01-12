@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Link } from 'react-router-dom';
 import PriceCard from './PriceCard';
 
 const PricingSection = () => {
@@ -57,15 +56,10 @@ const PricingSection = () => {
             שיעור פרטי, אחד על אחד, שמותאם אליכם ב100%
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {prices.map((price, index) => (
             <PriceCard key={index} {...price} />
           ))}
-        </div>
-        <div className="text-center">
-          <Button asChild className="bg-accent hover:bg-accent/90">
-            <Link to="/prices">צפה בכל אפשרויות התמחור</Link>
-          </Button>
         </div>
       </div>
     </section>

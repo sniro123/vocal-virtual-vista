@@ -7,6 +7,7 @@ interface PriceCardProps {
   features: string[];
   whatsappLink?: string;
   contactLink?: string;
+  footnote?: string;
 }
 
 const PriceCard = ({
@@ -16,6 +17,7 @@ const PriceCard = ({
   features,
   whatsappLink,
   contactLink,
+  footnote,
 }: PriceCardProps) => {
   return (
     <div className="bg-white p-8 rounded-xl shadow-lg transition-transform hover:scale-105">
@@ -42,13 +44,18 @@ const PriceCard = ({
           </li>
         ))}
       </ul>
+      {footnote && (
+        <p className="text-sm text-secondary mb-6 italic">
+          {footnote}
+        </p>
+      )}
       <div className="space-y-3">
         {whatsappLink && (
           <Button
             className="w-full bg-[#25D366] hover:bg-[#25D366]/90"
             onClick={() => window.open(whatsappLink, '_blank')}
           >
-            Contact via WhatsApp
+            קביעת שיעור
           </Button>
         )}
         {contactLink && (
@@ -57,7 +64,7 @@ const PriceCard = ({
             className="w-full border-accent text-accent hover:bg-accent hover:text-white"
             onClick={() => window.open(contactLink, '_blank')}
           >
-            Contact Form
+            לרכישת חבילה
           </Button>
         )}
       </div>

@@ -32,15 +32,15 @@ const Index = () => {
     <div className="min-h-screen" dir="rtl">
       <Header />
       <main style={{ paddingTop: 'var(--header-height)' }}>
-        <div className="border-y border-black">
+        <div className="border-y-2 border-black">
           <ParallaxSection {...parallaxContent[0]} />
         </div>
         <AboutSection />
-        <div className="border-y border-black">
+        <div className="border-y-2 border-black">
           <ParallaxSection {...parallaxContent[1]} />
         </div>
         <PricingSection />
-        <div className="border-y border-black">
+        <div className="border-y-2 border-black">
           <ParallaxSection {...parallaxContent[2]} />
         </div>
         <TestimonialsSection />

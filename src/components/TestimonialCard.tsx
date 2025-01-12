@@ -8,7 +8,7 @@ interface TestimonialCardProps {
 
 const TestimonialCard = ({ name, age, city, image, text }: TestimonialCardProps) => {
   return (
-    <div className="bg-white p-8 rounded-xl shadow-lg mx-auto min-h-[500px] flex flex-col w-full">
+    <div className="bg-white p-8 rounded-xl shadow-lg mx-12 min-h-[500px] flex flex-col w-[calc(100%-6rem)]">
       <div className="flex items-center space-x-1 mb-4">
         {[...Array(5)].map((_, i) => (
           <svg

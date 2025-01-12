@@ -21,29 +21,35 @@ const Footer = () => {
     try {
       console.log('Submitting form data:', { name, phone, message });
       
-      const { error } = await supabase
+      // First, save to Supabase
+      const { error: dbError } = await supabase
         .from('contact_submissions')
         .insert([{ name, phone, message }]);
 
-      if (error) {
-        console.error('Supabase error:', error);
-        throw error;
+      if (dbError) {
+        console.error('Supabase database error:', dbError);
+        throw new Error('Failed to save submission');
       }
 
-      // Trigger the edge function to send email notification
-      const { error: functionError } = await supabase.functions.invoke('notify-submission', {
+      // Then, trigger email notification
+      const { data: functionData, error: functionError } = await supabase.functions.invoke('notify-submission', {
         body: { name, phone, message },
       });
 
       if (functionError) {
         console.error('Edge function error:', functionError);
         // Don't throw here as the data is already saved
+        toast({
+          title: "ההודעה נשמרה",
+          description: "נתקלנו בבעיה בשליחת האימייל, אך הפרטים נשמרו במערכת.",
+        });
+      } else {
+        console.log('Edge function response:', functionData);
+        toast({
+          title: "ההודעה נשלחה!",
+          description: "נחזור אליך בהקדם האפשרי.",
+        });
       }
-
-      toast({
-        title: "ההודעה נשלחה!",
-        description: "נחזור אליך בהקדם האפשרי.",
-      });
       
       (e.target as HTMLFormElement).reset();
     } catch (error) {

@@ -31,7 +31,7 @@ const TestimonialCard = ({ name, age, city, image, text }: TestimonialCardProps)
         <div>
           <h4 className="font-semibold text-primary text-lg">{name}</h4>
           <p className="text-sm text-secondary">
-            בן/בת {age}, {city}
+            {name === "יונתן" ? "בן" : "בת"} {age}, {city}
           </p>
         </div>
       </div>

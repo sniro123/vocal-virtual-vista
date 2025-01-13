@@ -12,7 +12,6 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === 'development' && componentTagger(),
   ].filter(Boolean),
-  base: "/your-repo-name/", // Replace with your actual repository name
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

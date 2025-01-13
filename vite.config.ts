@@ -21,8 +21,5 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: "dist",
     sourcemap: true,
-  },
-  optimizeDeps: {
-    exclude: ['bun']
   }
 }));
